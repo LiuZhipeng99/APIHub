@@ -10,131 +10,73 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.7.0</version>
         <relativePath/> <!-- lookup parent from repository -->
+<!--        使用boot的版本-->
     </parent>
-    <groupId>com.yupi</groupId>
-    <artifactId>yuapi-backend</artifactId>
+
+
+    <groupId>edu.lzp</groupId>
+    <artifactId>openapi-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>yuapi-backend</name>
-    <description>鱼皮接口</description>
+    <name>openapi-backend</name>
+    <packaging>pom</packaging>
+    <description>openapi开发接口</description>
+    <modules>
+        <module>yuapi-backend</module>
+        <module>yuapi-gateway</module>
+        <module>yuapi-interface</module>
+        <module>yuapi-client-sdk</module>
+        <module>yuapi-common</module>
+
+    </modules>
+
+<!--    <properties>-->
+<!--        <maven.compiler.source>8</maven.compiler.source>-->
+<!--        <maven.compiler.target>8</maven.compiler.target>-->
+<!--    </properties>-->
     <properties>
+<!--        <project-version>0.0.1-SNAPSHOT</project-version>-->
+
+        <common-version>0.0.1</common-version>
+        <client-sdk-version>0.0.1</client-sdk-version>
+
+        <spring-cloud.version>2021.0.5</spring-cloud.version>
         <java.version>1.8</java.version>
     </properties>
-    <dependencies>
-        <dependency>
-            <groupId>com.yupi</groupId>
-            <artifactId>yuapi-common</artifactId>
-            <version>0.0.1</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.dubbo/dubbo -->
-        <dependency>
-            <groupId>org.apache.dubbo</groupId>
-            <artifactId>dubbo</artifactId>
-            <version>3.0.9</version>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba.nacos</groupId>
-            <artifactId>nacos-client</artifactId>
-            <version>2.1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>2.2.2</version>
-        </dependency>
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.5.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.session</groupId>
-            <artifactId>spring-session-data-redis</artifactId>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.9.0</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.12.0</version>
-        </dependency>
-        <!-- https://doc.xiaominfo.com/knife4j/documentation/get_start.html-->
-        <dependency>
-            <groupId>com.github.xiaoymin</groupId>
-            <artifactId>knife4j-spring-boot-starter</artifactId>
-            <version>3.0.3</version>
-        </dependency>
-        <dependency>
-            <groupId>com.yupi</groupId>
-            <artifactId>yuapi-client-sdk</artifactId>
-            <version>0.0.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/junit/junit -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.2</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.yupi</groupId>
+                <artifactId>yuapi-client-sdk</artifactId>
+                <version>${client-sdk-version}</version>
+
+            </dependency>
+            <dependency>
+                <groupId>com.yupi</groupId>
+                <artifactId>yuapi-common</artifactId>
+                <version>${common-version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <build>
+<!--        跳过所有测试-->
         <plugins>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
                 <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
+                    <skipTests>true</skipTests>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-<!-- 负责人【yupi】 https://github.com/liyupi -->
 </project>

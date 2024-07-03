@@ -1,0 +1,4 @@
+1学习本地项目push到github（先删除.git)
+
+2 学习pom模块化组织和编译打包：涉及模块相互引用（公共模块common不打包只编译）->build的父子继承、dependencyManagement父pom去管理子pom
+父pom仍然可以引用如springboot作为父pom减少部分版本管理

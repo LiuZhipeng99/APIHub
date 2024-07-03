@@ -5,27 +5,31 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.5</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <groupId>edu.lzp</groupId>
+        <artifactId>openapi-backend</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
+
     <groupId>com.yupi</groupId>
     <artifactId>yuapi-gateway</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>yuapi-gateway</name>
     <description>yuapi-gateway</description>
-    <properties>
-        <java.version>1.8</java.version>
-        <spring-cloud.version>2021.0.5</spring-cloud.version>
-    </properties>
-<!-- 讲师 [coder_鱼_皮](https://space.bilibili.com/12890453/) -->
+
+
+
+
     <dependencies>
         <dependency>
             <groupId>com.yupi</groupId>
             <artifactId>yuapi-common</artifactId>
-            <version>0.0.1</version>
         </dependency>
+        <dependency>
+            <groupId>com.yupi</groupId>
+            <artifactId>yuapi-client-sdk</artifactId>
+        </dependency>
+
+
         <!-- https://mvnrepository.com/artifact/org.apache.dubbo/dubbo -->
         <dependency>
             <groupId>org.apache.dubbo</groupId>
@@ -40,11 +44,6 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.yupi</groupId>
-            <artifactId>yuapi-client-sdk</artifactId>
-            <version>0.0.1</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -67,18 +66,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <build>
         <plugins>
             <plugin>
@@ -95,5 +82,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
