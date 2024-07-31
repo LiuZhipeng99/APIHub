@@ -67,6 +67,10 @@ INSERT INTO yuapi.interface_info (name,description,url,requestParams,requestHead
 	 ('B站热榜','https://www.free-api.com/doc/639','https://v.api.aa1.cn/api/bilibili-rs/','无',NULL,'',0,'',2,'2024-07-31 03:53:46','2024-07-31 04:11:15',0),
 	 ('部分免费歌曲','https://www.free-api.com/doc/643','https://www.free-api.com/doc/643','null',NULL,NULL,0,'get/post',2,'2024-07-31 04:10:04','2024-07-31 04:10:04',0),
 	 ('今日头条热点','doc：https://www.free-api.com/doc/640','https://tenapi.cn/v2/toutiaohotnew','null',NULL,NULL,0,'get/post',2,'2024-07-31 04:10:58','2024-07-31 04:10:58',0);
+INSERT INTO yuapi.`user_interface_info` (`userId`, `interfaceInfoId`, `totalNum`, `leftNum`, `status`, `createTime`, `updateTime`, `isDelete`) VALUES
+	(1, 1, 100, 50, 0, '2024-01-01 10:00:00', '2024-01-01 10:00:00', 0),
+	(1, 2, 200, 150, 0, '2024-02-01 11:00:00', '2024-02-01 11:00:00', 0);
+
 -- 填充数据
 insert into yuapi.`interface_info` (`name`, `description`, `url`, `requestHeader`, `responseHeader`, `status`, `method`, `userId`) values ('姚皓轩', '金鹏', 'www.lyda-klein.biz', '杜昊强', '邵志泽', 0, '冯鸿涛', 6546);
 insert into yuapi.`interface_info` (`name`, `description`, `url`, `requestHeader`, `responseHeader`, `status`, `method`, `userId`) values ('廖驰', '沈泽洋', 'www.consuelo-sipes.info', '彭昊然', '邓耀杰', 0, '周彬', 7761037);
