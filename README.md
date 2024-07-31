@@ -3,6 +3,60 @@ for api
 https://github.com/Ba11ooner/api-project 来源于鱼皮项目
 
 https://github.com/kixuan/XuanApi
+
+# 中间件
+```
+services:
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: 123456
+    # 在这个compose里不持久化down就没了，其他几个vol没什么好存的日志啥的
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+
+  zookeeper:
+    image: zookeeper
+    ports:
+      - "2181:2181"
+
+  kafka:
+    image: apache/kafka
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      ALLOW_PLAINTEXT_LISTENER: yes
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://0.0.0.0:9092
+
+  nacos:
+    image: nacos/nacos-server
+    ports:
+      - "8848:8848"
+      - "9848:9848"
+      # 害得看官网的少了个端口，官网示例了个骚操作对depends的服务用命令ping
+    environment:
+      MODE: standalone
+      # 默认用内嵌h2
+      #SPRING_DATASOURCE_PLATFORM: mysql
+```
+
+# TODO:
+- 新增了admin的用户数据，新增了接口样例（https://github.com/public-apis/public-apis、https://github.com/fangzesheng/free-api、在后续考虑介入ai接口如songquanpeng/one-api，考虑不需要鉴权的，前端结合apipost跳转方便开发者调用
+- 在启动并使用后，发现没有注册的页面，新增接口也没有前端失焦确定必填项 后端也没校验直接报sql错。
+- 接口分析打开报sql错误是表没数据导致的，解决下空表的报错问题
+- 重新理清业务，client-sdk做签名真的需要吗，校验token直接放在请求里就行了啊检验在后端做而不是http client
+- 主页展示接口的弄漂亮一点（低优先级）
+
 # change：
 ### 前端部分学习(浅学umi
 - openapi插件（如果多个服务添加多个项），自动生成的好处：如果我们后端的实体类修改了,我们可以直接运行 **openapi** 来直接更新
