@@ -4,6 +4,8 @@ https://github.com/Ba11ooner/api-project 来源于鱼皮项目
 
 https://github.com/kixuan/XuanApi
 
+对标：https://api.aliyun.com/ 这基本商业的调用好像都是sdk构造request，https://www.free-api.com/ 用户自己构造request，用token鉴权
+
 # 中间件
 ```
 services:
