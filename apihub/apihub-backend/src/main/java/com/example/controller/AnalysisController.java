@@ -49,7 +49,10 @@ public class AnalysisController {
         List<UserInterfaceInfo> userInterfaceInfoList = userInterfaceInfoMapper.listTopInvokeInterfaceInfo(3);
         Map<Long, List<UserInterfaceInfo>> interfaceInfoIdObjMap = userInterfaceInfoList.stream()
                 .collect(Collectors.groupingBy(UserInterfaceInfo::getInterfaceInfoId));
-
+        // 检查 keySet 是否为空，如果接口调用数据库为空则为空，会导致list查询抛错
+        if (interfaceInfoIdObjMap.isEmpty()) {
+            return ResultUtils.success(new ArrayList<>());
+        }
         
         QueryWrapper<InterfaceInfo> queryWrapper = new QueryWrapper<>();
         queryWrapper.in("id", interfaceInfoIdObjMap.keySet());
