@@ -4,6 +4,13 @@ import defaultSettings from './defaultSettings';
 import proxy from './proxy';
 import routes from './routes';
 const { REACT_APP_ENV } = process.env;
+// 部署到非根目录https://pro.ant.design/zh-CN/docs/deploy
+export default {
+  // ... some config
+  base: '/APIHub/',
+  publicPath: '/APIHub/',
+};
+
 export default defineConfig({
   /**
    * @name 开启 hash 模式
@@ -104,7 +111,7 @@ export default defineConfig({
   openAPI: [
     {
       requestLibPath: "import { request } from '@umijs/max'",
-      schemaPath: 'http://localhost:7529/api/v3/api-docs',
+      schemaPath: 'http://111.229.176.89:8080/api/v3/api-docs',
       projectName: 'yuapi-backend',
     },
   ],
