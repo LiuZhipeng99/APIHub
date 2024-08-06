@@ -6,51 +6,7 @@ https://github.com/kixuan/XuanApi
 
 对标：https://api.aliyun.com/ 这基本商业的调用好像都是sdk构造request，https://www.free-api.com/ 用户自己构造request，用token鉴权
 
-# 中间件
-```
-services:
-  mysql:
-    image: mysql:8.0
-    ports:
-      - "3306:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: 123456
-    # 在这个compose里不持久化down就没了，其他几个vol没什么好存的日志啥的
-    volumes:
-      - ./mysql_data:/var/lib/mysql
 
-  redis:
-    image: redis
-    ports:
-      - "6379:6379"
-
-  zookeeper:
-    image: zookeeper
-    ports:
-      - "2181:2181"
-
-  kafka:
-    image: apache/kafka
-    ports:
-      - "9092:9092"
-    environment:
-      KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      ALLOW_PLAINTEXT_LISTENER: yes
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://0.0.0.0:9092
-
-  nacos:
-    image: nacos/nacos-server
-    ports:
-      - "8848:8848"
-      - "9848:9848"
-      # 害得看官网的少了个端口，官网示例了个骚操作对depends的服务用命令ping
-    environment:
-      MODE: standalone
-      # 默认用内嵌h2
-      #SPRING_DATASOURCE_PLATFORM: mysql
-```
 
 # TODO:
 - 新增了admin的用户数据，新增了接口样例（https://github.com/public-apis/public-apis、https://github.com/fangzesheng/free-api、在后续考虑介入ai接口如songquanpeng/one-api，考虑不需要鉴权的，前端结合apipost跳转方便开发者调用
