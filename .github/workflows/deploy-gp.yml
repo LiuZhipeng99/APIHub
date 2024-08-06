@@ -11,16 +11,15 @@ on:
   workflow_dispatch:
 
 jobs:
+
+  # build job
   build:
-
     runs-on: ubuntu-latest
-
     # strategy:
     #   matrix:
     #     node-version: [18.x, 20.x, 22.x]
     #     # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
-    steps:
+    # steps:
     # - uses: actions/checkout@v4
     # - run: cd frontend
     # # - name: Use Node.js ${{ matrix.node-version }}
@@ -38,7 +37,7 @@ jobs:
     #   with:
     #     path: ./fronted/dist
 
-
+    steps:
     - uses: actions/checkout@v4
     - name: Set up Node.js 22.x
       uses: actions/setup-node@v4
@@ -55,4 +54,14 @@ jobs:
       with:
         path: ./frontend/dist
 
-          
+  # Deployment job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
