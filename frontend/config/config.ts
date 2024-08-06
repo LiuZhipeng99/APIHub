@@ -4,13 +4,6 @@ import defaultSettings from './defaultSettings';
 import proxy from './proxy';
 import routes from './routes';
 const { REACT_APP_ENV } = process.env;
-// 部署到非根目录https://pro.ant.design/zh-CN/docs/deploy
-export default {
-  // ... some config
-  base: '/APIHub/',
-  publicPath: '/APIHub/',
-};
-
 export default defineConfig({
   /**
    * @name 开启 hash 模式
@@ -118,4 +111,8 @@ export default defineConfig({
   mfsu: {
     exclude: ['@playwright/test'],
   },
+
+  // 部署到非根目录https://pro.ant.design/zh-CN/docs/deploy
+  base: '/APIHub/',
+  publicPath: '/APIHub/',
 });
