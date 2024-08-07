@@ -200,31 +200,6 @@ const TableList: React.FC = () => {
       },
     },
     {
-      title: '请求方法',
-      dataIndex: 'method',
-      valueType: 'select',
-      formItemProps: {
-        rules: [
-          {
-            required: true,
-            message: '请求方法是必填项',
-          },
-        ],
-      },
-      fieldProps: {
-        placeholder: '请选择请求方法',
-      },
-      renderFormItem: () => (
-          <Select placeholder="请选择请求方法">
-            <Option value="GET">GET</Option>
-            <Option value="POST">POST</Option>
-            {/*<Option value="PUT">PUT</Option>*/}
-            {/*<Option value="DELETE">DELETE</Option>*/}
-            {/*<Option value="PATCH">PATCH</Option>*/}
-          </Select>
-      ),
-    },
-    {
       title: 'URL',
       dataIndex: 'url',
       valueType: 'text',
@@ -243,6 +218,31 @@ const TableList: React.FC = () => {
       fieldProps: {
         placeholder: '请输入接口URL',
       },
+    },
+    {
+      title: '请求方法',
+      dataIndex: 'method',
+      valueType: 'select',
+      formItemProps: {
+        rules: [
+          {
+            required: true,
+            message: '请求方法是必填项',
+          },
+        ],
+      },
+      fieldProps: {
+        placeholder: '请选择请求方法',
+      },
+      renderFormItem: () => (
+          <Select placeholder="请选择请求方法">
+            <Option value={0}>GET</Option>
+            <Option value={1}>POST</Option>
+            {/*<Option value={2}>PUT</Option>*/}
+            {/*<Option value={3}>DELETE</Option>*/}
+            {/*<Option value={4}>PATCH</Option>*/}
+          </Select>
+      ),
     },
     // {
     //   title: '请求头',
