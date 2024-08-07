@@ -1,0 +1,77 @@
+server:
+  port: 8090
+spring:
+#  application:
+#    name: api-gateway-rewrite
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    gateway:
+      globalcors: # 跨域处理
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "http://127.0.0.1:5500"
+              - "http://localhost:8000"
+            allowedMethods:
+              - GET
+              - POST
+            allowedHeaders: "*"
+            allowCredentials: true
+      default-filters:
+        - AddResponseHeader=source, api-gateway # 流量染色，说明响应源于 api-gateway
+      routes:
+        - id: backend_route # 请求转发到 api-backend
+          uri: lb://backend #http://localhost:8080 #能负载均衡和隐藏ip）这里需服务发现依赖和spring-cloud-loadbalancer
+          #然后gateway支持动态路由监听routes变化而需重启（通过mq驱动数据库或者配置中心）：https://cloud.tencent.com/developer/article/2096938
+          #这个服务提供者需要cloud.nacos.discovery.server-addr: 127.0.0.1:8848，这里的服务发现和dubbo的不一样把整个server注册了
+          # 看文档也算明白了和dubbo用法的区别 https://nacos.io/docs/latest/ecology/use-nacos-with-spring-cloud/
+          predicates:
+            - Path=/backend/**
+
+        - id: interface_route # 请求转发到 api-interface
+          uri: lb://interface-server-a
+          predicates:
+            - Path=/api/interface1/**
+#        - id: add_request_header_route
+#          uri: http://localhost:8123
+#          predicates:
+#            - Path=/api/**
+#          filters:
+#            - AddRequestHeader=yupi, swag
+#            - AddRequestParameter=name, dog
+#            - name: CircuitBreaker
+#              args:
+#                name: myCircuitBreaker
+#                fallbackUri: forward:/fallback
+#        - id: yupi-fallback
+#          uri: https://yupi.icu
+#          predicates:
+#            - Path=/fallback
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          gateway: trace
+
+# 理解dubbo用注册中心和cloud用注册中心，前者是用内部的rpc，后者http
+# cloud配置nacos做配置中心用http调用的，cloud也能配置nacos做注册中心，但目的就不一样了
+dubbo:
+  application: #这个和cloud的不一样 不用spring.application进行注册
+    name: apihub-gateway
+  registry:
+    address: nacos://111.229.176.89:8848
+  protocol:
+    name: dubbo
+    port: 2999
+
+## API网关级接口文档配置，微服务架构下通过注册中心聚合文档:https://doc.xiaominfo.com/docs/action/springcloud-gateway
+#knife4j:
+#  enable: true
+
+api: #测试用
+  client:
+    access-key: 5ad1086d8f347665f184ab61ebe37c87
+    secret-key: ef4e4ac32b5bad82682baf50fb2e7dd3
+
