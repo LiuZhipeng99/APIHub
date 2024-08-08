@@ -104,8 +104,8 @@ export default defineConfig({
   openAPI: [
     {
       requestLibPath: "import { request } from '@umijs/max'",
-      //knife4j doc url：http://111.229.176.89:8080/backend/doc.html
-      schemaPath: 'http://111.229.176.89:8080/backend/v3/api-docs', 
+      //knife4j doc url：http://111.229.176.89:8081/backend/doc.html
+      schemaPath: 'http://111.229.176.89:8081/backend/v3/api-docs', 
       projectName: 'yuapi-backend',
     },
   ],
