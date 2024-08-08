@@ -56,6 +56,9 @@ jobs:
     - name: Install dependencies
       run: yarn install
       working-directory: ./frontend
+    - name: openapi
+      run: npm run openapi
+      working-directory: ./frontend
     - name: Build project
       run: npm run build --if-present
       working-directory: ./frontend
