@@ -15,7 +15,8 @@ interface ResponseStructure {
  * @doc https://umijs.org/docs/max/request#配置
  */
 export const requestConfig: RequestConfig = {
-  baseURL: 'http://localhost:7529',
+  baseURL: 'http://111.229.176.89:8081', // 后面改为网关地址，会经过路由转发到后台
+  
   withCredentials: true,
   // 请求拦截器
   requestInterceptors: [
