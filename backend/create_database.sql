@@ -70,7 +70,7 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 -- 加入一个admin用户
 INSERT INTO apihub.`user` (userName,userAccount,userAvatar,gender,userRole,userPassword,accessKey,secretKey,createTime,updateTime,isDelete) VALUES
-	 ('adminadmin密','admin',NULL,NULL,'admin','29755bf93fbdce95de1b06c61d402a76','abcd7bd900a2b814d5532745a50c363c','427721e4b019cd8e76bb4ee981e58fc7','2024-07-31 03:08:51','2024-07-31 03:59:25',0);
+	 ('adminadmin密','admin',NULL,NULL,'admin','f53bcfe70172be7db3c69cabe6946108','abcd7bd900a2b814d5532745a50c363c','427721e4b019cd8e76bb4ee981e58fc7','2024-07-31 03:08:51','2024-07-31 03:59:25',0);
 -- 加入接口信息
 INSERT INTO apihub.interface_info (name,description,url,requestParams,requestHeader,responseHeader,status,`method`,userId,createTime,updateTime,isDelete) VALUES
 	 ('B站热榜','https://www.free-api.com/doc/639','https://v.api.aa1.cn/api/bilibili-rs/','无',NULL,'',0,0,1,'2024-07-31 03:53:46','2024-07-31 04:11:15',0),
