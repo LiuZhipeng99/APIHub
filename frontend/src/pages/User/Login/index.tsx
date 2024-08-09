@@ -13,7 +13,7 @@ import React, { useState } from 'react';
 import { history, useModel } from '@umijs/max';
 import styles from './index.less';
 import LoginPageFooter from "@/pages/User/Login/components/LoginPageFooter";
-import {getLoginUserUsingGET, userLoginUsingPOST} from "@/services/yuapi-backend/userController";
+import {getLoginUser,  userLogin} from "@/services/yuapi-backend/userController";
 
 //函数组件（不带参数）：登录
 const Login1: React.FC = () => {
@@ -30,8 +30,8 @@ const Login1: React.FC = () => {
     //     console.log(userInfo)
     //     //初始状态中的用户信息不存在，则通过后端接口获取信息（这里会是已经登陆用户再去登录但不刷新吗）
     //     if (!userInfo) {
-    //         console.log("login:getLoginUserUsingGET")
-    //         const msg = await getLoginUserUsingGET();
+    //         console.log("login:getLoginUser")
+    //         const msg = await getLoginUser();
     //         console.log(msg)
     //         if (msg.code === 200) {
     //             const res: API.CurrentUser = {
@@ -55,12 +55,12 @@ const Login1: React.FC = () => {
     //登录函数，对接自动生成的接口函数
     const handleSubmit = async (values: API.UserLoginRequest) => {
         try {
-            const res = await userLoginUsingPOST({
+            const res = await  userLogin({
                 ...values, //这种参数和values的key一样，会覆盖掉values
             },{
                 timeout: 5000, // 设置超时时间为 5000 毫秒 抛错识别
             });
-            // const res = await userLoginUsingPOST({
+            // const res = await  userLogin({
             //     需要查看service中的typing知道请求参数UserLoginRequest有哪些字段
             //     userAccount: values.userAccount,
             //     userPassword: values.userAccount
