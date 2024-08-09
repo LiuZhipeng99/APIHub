@@ -15,7 +15,7 @@ interface ResponseStructure {
  * @doc https://umijs.org/docs/max/request#配置
  */
 export const requestConfig: RequestConfig = {
-  baseURL: 'http://111.229.176.89:8081', // 后面改为网关地址，会经过路由转发到后台
+  baseURL: 'http://111.229.176.89:8081/backend', // 后面改为网关ip进行转发。  openapi插件不能获得server属性吗还需要填path
   
   withCredentials: true,
   // 请求拦截器
