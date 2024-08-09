@@ -9,7 +9,7 @@ import styles from './index.less';
 import RegisterPageFooter from "@/pages/User/Register/components/RegisterPageFooter";
 import message from "antd/es/message";
 import {LockOutlined, UserOutlined} from "@ant-design/icons";
-import {userRegisterUsingPOST as register} from "@/services/yuapi-backend/userController";
+import {userRegister as register} from "@/services/yuapi-backend/userController";
 
 //相当于 sleep()，缺省时默认参数为 100 ms
 const waitTime = (time: number = 100) => {
