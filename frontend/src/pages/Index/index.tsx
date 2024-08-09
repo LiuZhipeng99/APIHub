@@ -1,7 +1,7 @@
 import { PageContainer } from '@ant-design/pro-components';
 import React, { useEffect, useState } from 'react';
 import { List, message } from 'antd';
-import { listInterfaceInfoByPageUsingGET } from '@/services/yuapi-backend/interfaceInfoController';
+import { listInterfaceInfoByPage } from '@/services/yuapi-backend/interfaceInfoController';
 
 /**
  * 主页
@@ -15,7 +15,7 @@ const Index: React.FC = () => {
   const loadData = async (current = 1, pageSize = 5) => {
     setLoading(true);
     try {
-      const res = await listInterfaceInfoByPageUsingGET({
+      const res = await listInterfaceInfoByPage({
         current,
         pageSize,
       });
