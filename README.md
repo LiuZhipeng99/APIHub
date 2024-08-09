@@ -8,6 +8,10 @@ https://github.com/kixuan/XuanApi
 
 对标：https://api.aliyun.com/ 这基本商业的调用好像都是sdk构造request，https://www.free-api.com/ 用户自己构造request，用token鉴权
 
+## TODO
+- 接口分析新增图例展示
+- 前端做在线调用的优化：根据是否有请求头或请求体变化，参考阿里云/free-api
+- RPC SDK接入
 
 
 ```
