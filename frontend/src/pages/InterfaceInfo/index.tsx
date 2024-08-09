@@ -2,8 +2,8 @@ import { PageContainer } from '@ant-design/pro-components';
 import React, { useEffect, useState } from 'react';
 import {Button, Card, Descriptions, Form, message, Input, Spin, Divider} from 'antd';
 import {
-  getInterfaceInfoByIdUsingGET,
-  invokeInterfaceInfoUsingPOST,
+  getInterfaceInfoById,
+  invokeInterfaceInfo,
 } from '@/services/yuapi-backend/interfaceInfoController';
 import { useParams } from '@@/exports';
 
@@ -26,7 +26,7 @@ const Index: React.FC = () => {
     }
     setLoading(true);
     try {
-      const res = await getInterfaceInfoByIdUsingGET({
+      const res = await getInterfaceInfoById({
         id: Number(params.id),
       });
       setData(res.data);
@@ -47,7 +47,7 @@ const Index: React.FC = () => {
     }
     setInvokeLoading(true);
     try {
-      const res = await invokeInterfaceInfoUsingPOST({
+      const res = await invokeInterfaceInfo({
         id: params.id,
         ...values,
       });
