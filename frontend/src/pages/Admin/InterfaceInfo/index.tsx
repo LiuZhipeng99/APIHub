@@ -14,12 +14,12 @@ const { Option } = Select;
 import React, { useRef, useState } from 'react';
 import type { SortOrder } from 'antd/es/table/interface';
 import {
-  addInterfaceInfoUsingPOST,
-  deleteInterfaceInfoUsingPOST,
-  listInterfaceInfoByPageUsingGET,
-  offlineInterfaceInfoUsingPOST,
-  onlineInterfaceInfoUsingPOST,
-  updateInterfaceInfoUsingPOST
+  addInterfaceInfo,
+  deleteInterfaceInfo,
+  listInterfaceInfoByPage,
+  offlineInterfaceInfo,
+  onlineInterfaceInfo,
+  updateInterfaceInfo
 } from '@/services/yuapi-backend/interfaceInfoController';
 import CreateModal from '@/pages/Admin/InterfaceInfo/components/CreateModal';
 import UpdateModal from "@/pages/Admin/InterfaceInfo/components/UpdateModal";
@@ -48,7 +48,7 @@ const TableList: React.FC = () => {
   const handleAdd = async (fields: API.InterfaceInfo) => {
     const hide = message.loading('正在添加');
     try {
-      await addInterfaceInfoUsingPOST({
+      await addInterfaceInfo({
         ...fields,
       });
       hide();
@@ -74,7 +74,7 @@ const TableList: React.FC = () => {
     }
     const hide = message.loading('修改中');
     try {
-      await updateInterfaceInfoUsingPOST({
+      await updateInterfaceInfo({
         id: currentRow.id,
         ...fields
       });
@@ -97,7 +97,7 @@ const TableList: React.FC = () => {
     const hide = message.loading('发布中');
     if (!record) return true;
     try {
-      await onlineInterfaceInfoUsingPOST({
+      await onlineInterfaceInfo({
         id: record.id
       });
       hide();
@@ -120,7 +120,7 @@ const TableList: React.FC = () => {
     const hide = message.loading('发布中');
     if (!record) return true;
     try {
-      await offlineInterfaceInfoUsingPOST({
+      await offlineInterfaceInfo({
         id: record.id
       });
       hide();
@@ -144,7 +144,7 @@ const TableList: React.FC = () => {
     const hide = message.loading('正在删除');
     if (!record) return true;
     try {
-      await deleteInterfaceInfoUsingPOST({
+      await deleteInterfaceInfo({
         id: record.id
       });
       hide();
@@ -383,7 +383,7 @@ const TableList: React.FC = () => {
           sort: Record<string, SortOrder>,
           filter: Record<string, React.ReactText[] | null>,
         ) => {
-          const res: any = await listInterfaceInfoByPageUsingGET({
+          const res: any = await listInterfaceInfoByPage({
             ...params,
           });
           if (res?.data) {
