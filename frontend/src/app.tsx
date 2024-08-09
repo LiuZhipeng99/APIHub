@@ -4,7 +4,7 @@ import { LinkOutlined } from '@ant-design/icons';
 import {PageLoading, SettingDrawer} from '@ant-design/pro-components';
 import type { RunTimeLayoutConfig } from '@umijs/max';
 import { history, Link } from '@umijs/max';
-import {getLoginUserUsingGET} from "@/services/yuapi-backend/userController";
+import {getLoginUser} from "@/services/yuapi-backend/userController";
 import { requestConfig } from './requestConfig';
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -46,7 +46,7 @@ export async function getInitialState(): Promise<InitialState> {
   if (!paths.includes(history.location.pathname)) {
     // 这里if做一个放行
     try {
-      const res = await getLoginUserUsingGET();
+      const res = await getLoginUser();
       if (res.data) {
         state.loginUser = res.data;
       }
