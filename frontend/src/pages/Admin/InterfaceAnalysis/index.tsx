@@ -2,7 +2,7 @@ import { PageContainer } from '@ant-design/pro-components';
 import '@umijs/max';
 import React, {useEffect, useState} from 'react';
 import ReactECharts from 'echarts-for-react';
-import {listTopInvokeInterfaceInfoUsingGET} from "@/services/yuapi-backend/analysisController";
+import {listTopInvokeInterfaceInfo} from "@/services/yuapi-backend/analysisController";
 
 /**
  * 接口分析
@@ -14,7 +14,7 @@ const InterfaceAnalysis: React.FC = () => {
 
   useEffect(() => {
     try {
-      listTopInvokeInterfaceInfoUsingGET().then(res => {
+      listTopInvokeInterfaceInfo().then(res => {
         if (res.data) {
           setData(res.data);
         }
