@@ -51,10 +51,11 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: 22.x
-        cache: 'yarn'
-        cache-dependency-path: ./frontend/yarn.lock
+        cache: 'npm'
+        cache-dependency-path: ./frontend/package.json
+        # cache-dependency-path: ./frontend/yarn.lock
     - name: Install dependencies
-      run: yarn install
+      run: npm install
       working-directory: ./frontend
     - name: openapi
       run: npm run openapi
